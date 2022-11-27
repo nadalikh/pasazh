@@ -16,13 +16,13 @@
     </div>
     <div class="mb-3">
         <select name="state" class="form-select w-25 d-inline mx-1">
-            <option selected >select state</option>
+            <option selected value="">select state</option>
             <option value="Tehran">Tehran</option>
             <option value="Alborz">Alborz</option>
             <option value="Azarbaijan">Azarbaijan</option>
         </select>
         <select name="city" class="form-select w-25 d-inline mx-1">
-            <option selected >select city</option>
+            <option selected value="">select city</option>
             <option value="Tehran">Tehran</option>
             <option value="Boomehen">Boomehen</option>
             <option value="Pardis">Pardis</option>
@@ -35,4 +35,4 @@
 
 
 @endsection
-@extends('footer')
+

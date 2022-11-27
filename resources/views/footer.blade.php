@@ -6,5 +6,7 @@
 @if (\Illuminate\Support\Facades\Session::has('success'))
     <p class="text-center text-success">{{\Illuminate\Support\Facades\Session::get('success')}}</p>
 @endif
+    <script>
+    </script>
 </body>
 </html>
