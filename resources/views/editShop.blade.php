@@ -17,8 +17,8 @@
                         <p class="d-inline">{{auth()->user()->mobile}}</p>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Action1</a>
+                        <a class="dropdown-item" href="#">Action2</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Something else here</a>
                     </div>
@@ -27,8 +27,35 @@
         </div>
     </nav>
 
-    <div class="row">
-        <form action="{{route('editShop', $shop->unique_id)}}" method="post" class="form-control col-10 d-block w-50 mx-auto mt-5" >
+    <div class="row w-100">
+        <div class="col-2 border m-0 p-0">
+            <div class="pos-f-t w-100">
+                <nav class="navbar w-100 ">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </nav>
+                  <div class="collapse bg-dark w-100" id="navbarToggleExternalContent">
+                      <ul class="nav flex-column">
+                          <li class="nav-item">
+                              <a class="nav-link active" href="#">Active</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="#">Link</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="#">Link</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link disabled" href="#">Disabled</a>
+                          </li>
+                      </ul>
+                  </div>
+
+
+            </div>
+        </div>
+        <form action="{{route('editShop', $shop->unique_id)}}" method="post" class="form-control col-9 d-block w-50 mx-auto mt-5" >
         @csrf
             <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
@@ -82,6 +109,13 @@
                 $('.dropdown-menu').addClass("show")
             else
                 $('.dropdown-menu').removeClass("show")
+
+        });
+        $('.navbar-toggler').on("click", function(){
+            if(! $('.collapse').hasClass("show")  )
+                $('.collapse').addClass("show")
+            else
+                $('.collapse').removeClass("show")
 
         });
 
