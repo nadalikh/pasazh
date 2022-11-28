@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Validator;
 
-class userController extends Controller
+class userController extends baseController
 {
     private string $verification_code;
     private $preLoginRules = [
@@ -28,7 +28,7 @@ class userController extends Controller
     public function preLogin(Request $req){
         $validator = Validator::make($req->all(), $this->preLoginRules);
         if($validator->fails())
-            return response()->json($validator->errors(), 400);
+            return $this->sendError($validator->errors(), [],400);
         $user = User::firstOrNew([
             'mobile' => $req->mobile
         ]);
@@ -37,18 +37,18 @@ class userController extends Controller
         $user->save();
         $sms = new mySweetSMS($req->mobile, $user->OTP);
         $sms->sendSMS();
-        return response()->json(['msg' => 'sms is sent'], 200);
+        return $this->sendResponse("", "sms is sent");
     }
     public function login(Request $req){
         $validator = Validator::make($req->all(),$this->loginRules) ;
         if($validator->fails())
-            return response()->json($validator->errors(), 400);
-        $user = User::whereMobile($req->mobile)->firstl();
+            return $this->sendError($validator->errors(), [], 400);
+        $user = User::whereMobile($req->mobile)->first();
         if(is_null($user)){
-            return response()->json(["msg": ""]);
+            return $this->sendError(["There is no user with this mobile number"], 404);
         }
         auth()->login($user);
         $token = auth()->user()->createToken('NKH')->plainTextToken;
-        return response()->json(['msg' => $token]);
+        return $this->sendResponse($token, "token sent");
     }
 }

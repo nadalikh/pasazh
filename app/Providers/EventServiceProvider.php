@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Events\ProductSMSEvent;
 use App\Events\updateShopEvent;
+use App\Listeners\SendProductSMS;
 use App\Listeners\sendSMSOnUpdateShop;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -22,6 +24,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         updateShopEvent::class => [
             sendSMSOnUpdateShop::class
+        ],
+        ProductSMSEvent::class => [
+            SendProductSMS::class
         ]
     ];
 

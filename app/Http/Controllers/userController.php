@@ -32,6 +32,7 @@ class userController extends Controller
     public function login(loginRequest $req){
         $user = User::whereMobile($req->mobile)->first();
         if($user->OTP == $req->verification_code) {
+            $user->activation = true;
             auth()->login($user);
             return redirect("makingShop");
         }
